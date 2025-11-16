@@ -4,6 +4,8 @@ import fnmatch
 
 def show_help():
     prog = os.path.basename(sys.argv[0]) or "listdump"
+    if prog == "__main__.py": prog = "listdump"
+
     print(f"""
 Usage:
   {prog} [includes] [-x|--exclude|-ex|--ex excludes] [-no-sub] [-out=filename] [-dir=path] [-no-gitignore] [-include-hidden]
