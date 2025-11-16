@@ -70,6 +70,4 @@ listdump py -no-gitignore -include-hidden
 
 ---
 
----------------------------------
-
 ***Tim Abdiukov***
