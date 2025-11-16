@@ -25,6 +25,16 @@ Examples:
 """)
     sys.exit(0)
 
+def format_size(num_bytes: int, shrink=False) -> str:
+    """Return human-readable file size."""
+    delimiter = "" if shrink else " "
+    for unit in ["B", "KB", "MB", "GB", "TB"]:
+        if num_bytes < 1024 or unit == "TB":
+            if unit == "B":
+                return f"{num_bytes}{delimiter}{unit}"
+            return f"{num_bytes:.2f}{delimiter}{unit}"
+        num_bytes /= 1024
+
 def parse_args(args):
     if not args or any(arg in ['-h', '--help'] for arg in args):
         show_help()
@@ -119,11 +129,16 @@ def collect_files(start_path, include_patterns, exclude_patterns, include_subfol
 def main():
     include_patterns, exclude_patterns, include_subfolders, start_dir, output_file, respect_gitignore, ignore_git_and_listdump = parse_args(sys.argv[1:])
     results = collect_files(start_dir, include_patterns, exclude_patterns, include_subfolders, respect_gitignore, ignore_git_and_listdump)
+    results_txt = "\n".join(results)
 
     with open(output_file, "w", encoding="utf-8") as f:
-        f.write("\n".join(results))
+        f.write(results_txt)
+
+    size_bytes = len(results_txt)
+    human_size = format_size(size_bytes)
 
     print(f"\n✓ Output saved to: {output_file}")
+    print(f"  Output size: {human_size} ({size_bytes} bytes)")
 
 if __name__ == "__main__":
     main()
