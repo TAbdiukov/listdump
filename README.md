@@ -48,7 +48,7 @@ listdump [includes] [-x excludes] [-no-sub] [-out=filename] [-dir=path] [-no-git
 
 ---
 
-## 🧪 Examples
+## ℹ️ Examples
 
 ```bash
 listdump txt py -x log tmp
