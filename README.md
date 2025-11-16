@@ -1,10 +1,11 @@
 # listdump
-### 📂💻→📝
 
 [![GitHub](https://img.shields.io/badge/GitHub-TAbdiukov/listdump-black?logo=github)](https://github.com/TAbdiukov/listdump)
 [![PyPI Version](https://img.shields.io/pypi/v/listdump.svg)](https://pypi.org/project/listdump) 
 ![License](https://img.shields.io/github/license/TAbdiukov/listdump)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/tabdiukov)
+
+### 📂💻→📝
 
 **listdump** is a lightweight CLI tool that recursively (or non-recursively) lists relevant files in a directory and outputs their contents wrapped in Markdown-style code blocks (```), ready for documentation, debugging, or review.
 
