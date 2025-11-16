@@ -3,23 +3,25 @@ import sys
 import fnmatch
 
 def show_help():
-    print("""
+    prog = os.path.basename(sys.argv[0]) or "listdump"
+    print(f"""
 Usage:
-  python list_files.py [includes] [-x excludes] [-no-sub] [-out=filename] [-dir=path] [-no-gitignore] [-include-hidden]
+  {prog} [includes] [-x|--exclude|-ex|--ex excludes] [-no-sub] [-out=filename] [-dir=path] [-no-gitignore] [-include-hidden]
 
 Arguments:
-  includes            List of extensions or glob patterns to include (e.g. txt py log_*_202*.log)
-  -x, --exclude       List of extensions or glob patterns to exclude
-  -no-sub             Exclude subfolders
-  -out=FILE           Output file name (default: output.md)
-  -dir=DIR            Starting directory (default: current)
-  -no-gitignore       Do not respect .gitignore rules
-  -include-hidden     Include normally excluded files: .git, .gitignore, listdump.md, and license files (LICENCE, LICENSE)
-  -h, --help          Show this help message
+  includes                    List of extensions or glob patterns to include (e.g. txt py log_*_202*.log)
+  -x, --exclude, -ex, --ex    List of extensions or glob patterns to exclude
+  -no-sub                     Exclude subfolders
+  -out=FILE                   Output file name (default: listdump.md)
+  -dir=DIR                    Starting directory (default: current)
+  -no-gitignore               Do not respect .gitignore rules
+  -include-hidden             Include normally excluded files: .git, .gitignore, listdump.md, and license files (LICENCE, LICENSE)
+  -h, --help                  Show this help message
+
 Examples:
-  python list_files.py txt py -x log tmp
-  python list_files.py log_*_202*.log -no-sub -out=logs.md
-  python list_files.py py -dir=src -x test_*.py -no-gitignore -include-hidden
+  {prog} txt py -x log tmp
+  {prog} log_*_202*.log -no-sub -out=logs.md
+  {prog} py -dir=src -x test_*.py -no-gitignore -include-hidden
 """)
     sys.exit(0)
 
@@ -39,7 +41,7 @@ def parse_args(args):
     mode = 'include'
     while i < len(args):
         arg = args[i]
-        if arg in ['-x', '--exclude']:
+        if arg in ['-x', '--exclude', '-ex', '--ex']:
             mode = 'exclude'
         elif arg == '-no-sub':
             include_subfolders = False

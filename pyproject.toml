@@ -1,6 +1,6 @@
 [project]
 name = "listdump"
-version = "0.1.6"
+version = "0.1.7"
 description = "List relevant files with content in markdown format"
 authors = [{name = "Tim Abdiukov", email = "TAbdiukov@gmail.com"}]
 dependencies = ["pathspec"]

@@ -1,4 +1,4 @@
-from listdump import list_files
+from listdump.list_files import main
 
 if __name__ == "__main__":
-    list_files.cli()
+    main()
