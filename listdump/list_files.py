@@ -1,14 +1,15 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 import sys
 import fnmatch
-
 
 try:
     from . import __app_name__, __version__
 except (ImportError, ModuleNotFoundError) as e:
     __app_name__ = "listdump"
     __version__ = "0.2.0-local"
-
 
 def show_help():
     prog = os.path.basename(sys.argv[0]) or "listdump"
