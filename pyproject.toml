@@ -1,6 +1,5 @@
 [project]
 name = "listdump"
-version = "0.1.9"
 description = "List relevant files with content in markdown format"
 authors = [{name = "Tim Abdiukov", email = "TAbdiukov@gmail.com"}]
 dependencies = ["pathspec"]
@@ -21,3 +20,6 @@ Documentation = "https://github.com/TAbdiukov/listdump/blob/main/README.md"
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = { attr = "listdump.__version__" }

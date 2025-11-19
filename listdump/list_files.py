@@ -2,11 +2,19 @@ import os
 import sys
 import fnmatch
 
+
+try:
+    from . import __app_name__, __version__
+except (ImportError, ModuleNotFoundError) as e:
+    __app_name__ = "listdump"
+    __version__ = "0.2.0-local"
+
+
 def show_help():
     prog = os.path.basename(sys.argv[0]) or "listdump"
     if prog == "__main__.py": prog = "listdump"
 
-    print(f"""
+    print(f"""{__app_name__} {__version__}
 Usage:
   {prog} [includes] [-x|--exclude|-ex|--ex excludes] [-no-sub] [-out=filename] [-dir=path] [-no-gitignore] [-include-hidden]
 
@@ -131,16 +139,11 @@ def collect_files(start_path, include_patterns, exclude_patterns, include_subfol
 def main():
     include_patterns, exclude_patterns, include_subfolders, start_dir, output_file, respect_gitignore, ignore_git_and_listdump = parse_args(sys.argv[1:])
     results = collect_files(start_dir, include_patterns, exclude_patterns, include_subfolders, respect_gitignore, ignore_git_and_listdump)
-    results_txt = "\n".join(results)
 
     with open(output_file, "w", encoding="utf-8") as f:
-        f.write(results_txt)
+        f.write("\n".join(results))
 
-    size_bytes = len(results_txt)
-    human_size = format_size(size_bytes)
-
-    print(f"\n✓ Output saved to: {output_file}")
-    print(f"  Output size: {human_size} ({size_bytes} bytes)")
+    print(f"\nOutput saved to: {output_file}")
 
 if __name__ == "__main__":
     main()
