@@ -35,16 +35,6 @@ Examples:
 """)
     sys.exit(0)
 
-def format_size(num_bytes: int, shrink=False) -> str:
-    """Return human-readable file size."""
-    delimiter = "" if shrink else " "
-    for unit in ["B", "KB", "MB", "GB", "TB"]:
-        if num_bytes < 1024 or unit == "TB":
-            if unit == "B":
-                return f"{num_bytes}{delimiter}{unit}"
-            return f"{num_bytes:.2f}{delimiter}{unit}"
-        num_bytes /= 1024
-
 def parse_args(args):
     if not args or any(arg in ['-h', '--help'] for arg in args):
         show_help()
